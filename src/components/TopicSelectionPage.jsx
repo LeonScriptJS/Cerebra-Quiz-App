@@ -1,10 +1,46 @@
+import { useNavigate } from "react-router-dom";
+import { fetchQuestions } from "../services/quizAPI";
+import { useState } from "react";
+import { useQuizStore } from "../store/quizStore";
+
 const TopicSelectionPage = () => {
+  // {================================= LOGIC ============================================}
+
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const setQuestions = useQuizStore((state) => state.setQuestions);
+
+  const handleTopicClick = async (topicKey) => {
+    try {
+      setLoading(true);
+
+      const questions = await fetchQuestions(topicKey);
+
+      // Store temporarily in sessionStorage
+      setQuestions(questions);
+
+      navigate("/quiz");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to load quiz. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // {=========================================================================================================================================================================================================}
+
   return (
     <>
       <div className="background min-h-screen bg-gray-50 text-gray-100">
         <main className="min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-8 p-4">
-          <div className="scienceSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
-          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105">
+          {/* {================================= Science 'N' Nature ============================================} */}
+          <div
+            onClick={() => handleTopicClick("scienceNNature")}
+            className="scienceSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
+          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="120"
@@ -24,14 +60,17 @@ const TopicSelectionPage = () => {
             <p className="scienceText font-semibold text-[18px] md:text-[20px] lg:text-[25px]">
               Science 'N' Nature
             </p>
-            {/* <button className="scienceButton  bg-yellow-400 rounded-4xl px-4 py-2 w-40 font-medium text-[14px] md:text-[16px] lg:text-[18px]
-            shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-yellow-500 hover:scale-105">
-              Start
-            </button> */}
-          </div> 
+          </div>
 
-          <div className="techSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
-          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105">
+          {/* {=============================================================================} */}
+
+          {/* {================================= Tech 'N' Nature ============================================} */}
+
+          <div
+            onClick={() => handleTopicClick("techNComputer")}
+            className="techSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
+          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="120"
@@ -50,14 +89,17 @@ const TopicSelectionPage = () => {
             <p className="techText font-semibold text-[18px] md:text-[20px] lg:text-[25px]">
               Tech 'N' Computer
             </p>
-            {/* <button className="techButton  bg-yellow-400 rounded-4xl px-4 py-2 w-40 font-medium text-[14px] md:text-[16px] lg:text-[18px]
-            shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-yellow-500 hover:scale-105">
-              Start
-            </button> */}
           </div>
 
-          <div className="sportSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
-          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105">
+          {/* {============================================================================} */}
+
+          {/* {================================= Sports ============================================} */}
+
+          <div
+            onClick={() => handleTopicClick("sports")}
+            className="sportSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
+          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="108"
@@ -65,10 +107,10 @@ const TopicSelectionPage = () => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-volleyball-icon lucide-volleyball"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-volleyball-icon lucide-volleyball"
             >
               <path d="M11.1 7.1a16.55 16.55 0 0 1 10.9 4" />
               <path d="M12 12a12.6 12.6 0 0 1-8.7 5" />
@@ -77,15 +119,20 @@ const TopicSelectionPage = () => {
               <path d="M6.3 3.8a16.55 16.55 0 0 0 1.9 11.5" />
               <circle cx="12" cy="12" r="10" />
             </svg>
-            <p className="sportText font-semibold text-[18px] md:text-[20px] lg:text-[25px]">Sports</p>
-            {/* <button className="sportButton  bg-yellow-400 rounded-4xl px-4 py-2 w-40 font-medium text-[14px] md:text-[16px] lg:text-[18px]
-            shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-yellow-500 hover:scale-105">
-              Start
-            </button> */}
+            <p className="sportText font-semibold text-[18px] md:text-[20px] lg:text-[25px]">
+              Sports
+            </p>
           </div>
 
-          <div className="animeSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
-          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105">
+          {/* {=============================================================================} */}
+
+          {/* {================================= Anime 'N' Manga ============================================} */}
+
+          <div
+            onClick={() => handleTopicClick("animeNManga")}
+            className="animeSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
+          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105"
+          >
             <svg
               className="w-30 h-30 text-gray-100"
               viewBox="144 144 512 512"
@@ -102,11 +149,9 @@ const TopicSelectionPage = () => {
             <p className="animeText font-semibold text-[18px] md:text-[20px] lg:text-[25px]">
               Anime'N' Manga
             </p>
-            {/* <button className="animeButton  bg-yellow-400 rounded-4xl px-4 py-2 w-40 font-medium text-[14px] md:text-[16px] lg:text-[18px]
-            shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-yellow-500 hover:scale-105">
-              Start
-            </button> */}
           </div>
+
+          {/* {=============================================================================} */}
         </main>
       </div>
     </>

@@ -18,7 +18,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/select" element={<TopicSelectionPage />} />
             <Route path="/quiz" element={<QuizQuestionPage />} />
-            <Route path="/congrats" element={<CongratsPage />} />
+            <Route path="/result" element={<CongratsPage />} />
           </Routes>
 
       </Router>

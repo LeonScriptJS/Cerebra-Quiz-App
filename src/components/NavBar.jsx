@@ -30,13 +30,13 @@ const NavBar = () => {
       <div className="navBar">
         <nav>
           <ul className="navBar flex space-x-6">
-            <li className="shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-yellow-500 hover:scale-105">
+            <li className=" transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-yellow-500 hover:scale-105">
               <Link to={"/"}>Home</Link>
             </li>
-            <li className="shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-yellow-500 hover:scale-105">
+            <li className="transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-yellow-500 hover:scale-105">
               <Link to={"/about"}>About Us</Link>
             </li>
-            <li className="shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-yellow-500 hover:scale-105">
+            <li className=" transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-yellow-500 hover:scale-105">
               <Link to={"/contact"}>Contact</Link>
             </li>
           </ul>

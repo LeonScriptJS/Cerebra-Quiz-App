@@ -14,11 +14,13 @@
     "axios": "^1.13.5",
     "localforage": "^1.10.0",
     "match-sorter": "^8.2.0",
+    "persist": "^0.2.7",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.0",
     "sort-by": "^1.2.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "zustand": "^5.0.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
