@@ -1,8 +1,91 @@
+import { useQuizStore } from "../store/quizStore";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import confetti from "canvas-confetti";
+
 const CongratsPage = () => {
+  const navigate = useNavigate();
+  const { score, questions } = useQuizStore();
+
+  if (!questions || questions.length === 0) {
+    return (
+      <div className="background min-h-screen bg-gray-50 text-gray-100 flex items-center justify-center">
+        <p className="text-slate-700">No results found.</p>
+      </div>
+    );
+  }
+
+  const percentage = Math.round((score / questions.length) * 100);
+
+  const getIQRange = () => {
+    if (percentage >= 90) return "145 - 160";
+    if (percentage >= 75) return "130 - 145";
+    if (percentage >= 60) return "120 - 130";
+    return "110 - 120";
+  };
+
+  const getComparison = () => {
+    if (percentage >= 90) {
+      return "Albert Einstein and Isaac Newton";
+    }
+    if (percentage >= 75) {
+      return "Nikola Tesla and Marie Curie";
+    }
+    if (percentage >= 60) {
+      return "Leonardo da Vinci and Ada Lovelace";
+    }
+    return "high-performing analytical thinkers worldwide";
+  };
+
+  // 🎉 Confetti Effect
+  useEffect(() => {
+    if (percentage < 40) return;
+
+    const duration = 4000;
+    const end = Date.now() + duration;
+
+    const shoot = () => {
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: ["#facc15", "#60a5fa", "#f97316"],
+      });
+
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: ["#facc15", "#60a5fa", "#f97316"],
+      });
+    };
+
+    const frame = () => {
+      confetti({
+        particleCount: 3,
+        spread: 60,
+        origin: { y: 0.6 },
+        scalar: 0.8,
+        colors: ["#facc15", "#60a5fa", "#f97316"],
+      });
+
+      shoot();
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    };
+
+    frame();
+  }, [percentage]);
+
   return (
     <>
       <div className="background min-h-screen bg-gray-50 text-gray-100">
-        <div className="priCongratsContainer bg-slate-700 h-screen m-0.5 p-4 rounded-4xl flex flex-col items-center justify-center gap-2 text-center">
+        <div className="priCongratsContainer bg-slate-700 min-h-screen m-0.5 p-6 rounded-4xl flex flex-col items-center justify-center text-center">
+
           <svg
             width="800"
             height="800"
@@ -46,11 +129,33 @@ const CongratsPage = () => {
             </g>
           </svg>
 
-          <p className="priCongratsText font-black text-[60px]">Congratulations!!!</p>
-          <p className="secCongratsText font-semibold text-[20px]">You scored higher than <span className="font-black"> 82% </span>of participants.<br />
-            Estimated IQ range: <span className="font-black">140 </span> {"-"} <span className="font-black">150</span>
+          <p className="priCongratsText font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-6">
+            Congratulations!!!
           </p>
-          <p className="finalText font-medium text-[15px]">People at this level often underestimate themselves.</p>
+
+          <p className="secCongratsText font-semibold text-base sm:text-lg md:text-xl mt-4 max-w-2xl">
+            You scored higher than{" "}
+            <span className="font-black">{percentage}%</span> of participants.
+            <br />
+            Estimated IQ range:{" "}
+            <span className="font-black">{getIQRange()}</span>
+          </p>
+
+
+          <div className="comparisonContainer mt-8 px-6 py-4 bg-slate-600/40 rounded-2xl max-w-md sm:max-w-lg">
+            <p className="comparisonText text-sm sm:text-base text-slate-200">
+              Your estimated range overlaps with figures historically believed
+              to score similarly, such as{" "}
+              <span className="font-semibold">{getComparison()}</span>.
+            </p>
+          </div>
+
+          <button
+            onClick={() => navigate("/")}
+            className="retakeButton mt-8 px-8 py-3 bg-white text-slate-800 rounded-2xl font-semibold hover:scale-105 transition-all duration-300"
+          >
+            Retake Quiz
+          </button>
         </div>
       </div>
     </>

@@ -39,7 +39,7 @@ const TopicSelectionPage = () => {
           <div
             onClick={() => handleTopicClick("scienceNNature")}
             className="scienceSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
-          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105"
+          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-yellow-400 hover:scale-105"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ const TopicSelectionPage = () => {
           <div
             onClick={() => handleTopicClick("techNComputer")}
             className="techSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
-          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105"
+          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-yellow-400 hover:scale-105"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@ const TopicSelectionPage = () => {
           <div
             onClick={() => handleTopicClick("sports")}
             className="sportSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
-          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105"
+          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-yellow-400 hover:scale-105"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +131,7 @@ const TopicSelectionPage = () => {
           <div
             onClick={() => handleTopicClick("animeNManga")}
             className="animeSection bg-slate-700 rounded-2xl p-8 flex flex-col items-center gap-6
-          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-slate-500 hover:scale-105"
+          shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-yellow-400 hover:scale-105"
           >
             <svg
               className="w-30 h-30 text-gray-100"
