@@ -39,7 +39,7 @@ const CongratsPage = () => {
 
   // 🎉 Confetti Effect
   useEffect(() => {
-    if (percentage < 10) return;
+    if (percentage < 40) return;
 
     const duration = 4000;
     const end = Date.now() + duration;
