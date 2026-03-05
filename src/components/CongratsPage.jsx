@@ -152,6 +152,7 @@ const CongratsPage = () => {
 
           <button
             onClick={() => navigate("/")}
+            aria-label="Retake Quiz"
             className="retakeButton mt-8 px-8 py-3 bg-white text-slate-800 rounded-2xl font-semibold hover:scale-105 transition-all duration-300"
           >
             Retake Quiz

@@ -47,7 +47,9 @@ const Contact = () => {
                     className="messageInput bg-gray-400 p-3 rounded-4xl "
                   ></textarea>
 
-                   <button className="startButton mt-6 text-[14px] bg-yellow-400 rounded-4xl px-4 py-4 w-full sm:w-60  
+                   <button 
+                   aria-label="Send Message"
+                   className="startButton mt-6 text-[14px] bg-yellow-400 rounded-4xl px-4 py-4 w-full sm:w-60  
                 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-yellow-500 hover:scale-105">
                   Send Message
                 </button>
